@@ -1,0 +1,75 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.logo {
+    height: 6em;
+    padding: 1.5em;
+    will-change: filter;
+    transition: filter 300ms;
+}
+.logo:hover {
+    filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+    filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.card {
+    padding: 2em;
+}
+
+.read-the-docs {
+    color: #888;
+}
+
+.App {
+    width: 50em;
+    /* background-color: rgb(13, 51, 34); */
+    background-color: gray;
+}
+
+/* .app-header {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  align-content: left;
+} */
+
+.new-entry {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+}
+
+.new-entry li {
+    display: flex;
+    margin-top: 1em;
+    /* align-content: ; */
+    /* justify-content: center; */
+}
+
+.new-entry li select {
+    width: 5em;
+    align-content: left;
+    /* justify-content: center; */
+}
+
+.new-entry textarea {
+    width: 90%;
+    height: 5em;
+    padding: 1em;
+    outline: 1px solid #ccc;
+    border-radius: 5px;
+    /* background-color: slategray; */
+    color: whitesmoke;
+    resize: horizontal;
+    margin-top: 1em;
+}
+
+label {
+    margin-right: 1em;
+}

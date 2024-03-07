@@ -1,0 +1,20 @@
+{
+  "name": "10min-warmups",
+  "version": "1.0.0",
+  "description": "App to help write down daily plans",
+  "main": "server.jsx",
+  "scripts": {
+    "test": "npm test"
+
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/appleschaussaa/10min-warmups.git"
+  },
+  "author": "appleschaussaa",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/appleschaussaa/10min-warmups/issues"
+  },
+  "homepage": "https://github.com/appleschaussaa/10min-warmups#readme"
+}
