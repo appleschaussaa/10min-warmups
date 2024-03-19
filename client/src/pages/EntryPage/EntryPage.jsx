@@ -1,28 +1,37 @@
+import react, { useState } from "react";
+import { useForm } from "react-hook-form";
+
 const EntryPage = () => {
+    // const [formData, setFormData] = useState();
+
+    const { register, handleSubmit } = useForm();
+    const onSubmit = (data) => {
+        const jsonData = JSON.stringify(data);
+        const fileData = new Blob([jsonData], { type: "application/json" });
+        const url = URL.createObjectURL(fileData);
+        const link = document.createElement("a");
+        link.href = url;
+
+        const date = new Date();
+        const dataString = new Date(date.getTime() - (date.getTimezoneOffset() * 60000))
+            .toISOString()
+            .split("T")[0];
+
+        link.download = `current-date-${dataString}.json`;
+        link.click();
+    };
+
     return (
         <div className="App-body">
             <h2>10min warmups</h2>
-            <form id="warmup">
+            <form id="warmup" onSubmit={handleSubmit(onSubmit)}>
                 <label htmlFor="current-day">Todays date</label>{" "}
-                <input type="date" id="current-day" name="current" />
+                <input type="date" {...register('current-day')} />
                 <ul className="new-entry">
-                    <li>
+                    <li className="hour" id="10am">
                         {" "}
-                        <label>10 - </label>
-                        <select>
-                            <option value="Choreograph">Chor</option>
-                            <option value="Structured">Struc</option>
-                            <option value="Discressionary">Disc</option>
-                            <option value="Downtime">DT</option>
-                        </select>{" "}
-                    </li>
-                    <textarea type="text" name="true" rows="2" column="35">
-                        wrefwef
-                    </textarea>
-                    <li>
-                        {" "}
-                        <label>11 - </label>{" "}
-                        <select>
+                        <label htmlFor="10am-hour-type">10 - </label>
+                        <select {...register('10am-hour-type')} {...register('10am-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -31,14 +40,30 @@ const EntryPage = () => {
                     </li>
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('10am-notes')}
+                        rows="2"
+                        column="35"
+                    ></textarea>
+                    <li className="hour" id="11am">
+                        {" "}
+                        <label htmlFor="11am-hour-type">11 - </label>{" "}
+                        <select id="11am-hour-type" {...register('11am-hour-type')} className="hour-type">
+                            <option value="Choreograph">Chor</option>
+                            <option value="Structured">Struc</option>
+                            <option value="Discressionary">Disc</option>
+                            <option value="Downtime">DT</option>
+                        </select>{" "}
+                    </li>
+                    <textarea
+                        type="text"
+                        {...register('11am-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="12pm">
                         {" "}
-                        <label>12 - </label>
-                        <select>
+                        <label htmlFor="12pm-hour-type">12 - </label>
+                        <select id="12pm-hour-type" {...register('12am-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -47,14 +72,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('12am-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="1pm">
                         {" "}
-                        <label>1 - </label>
-                        <select>
+                        <label htmlFor="1pm-hour-type">1 - </label>
+                        <select id="1pm-hour-type" {...register('1pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -63,14 +88,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('1pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="2pm">
                         {" "}
-                        <label>2 - </label>
-                        <select>
+                        <label htmlFor="2pm-hour-type">2 - </label>
+                        <select id="2pm-hour-type" {...register('2pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -79,14 +104,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('2pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="3pm">
                         {" "}
-                        <label>3 - </label>
-                        <select>
+                        <label htmlFor="3pm-hour-type">3 - </label>
+                        <select id="3pm-hour-type" {...register('3pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -95,14 +120,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('3pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="4pm">
                         {" "}
-                        <label>4 - </label>
-                        <select>
+                        <label htmlFor="4pm-hour-type">4 - </label>
+                        <select id="4pm-hour-type" {...register('4pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -111,14 +136,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('4pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="5pm">
                         {" "}
-                        <label>5 - </label>
-                        <select>
+                        <label htmlFor="5pm-hour-type">5 - </label>
+                        <select id="5pm-hour-type" {...register('5pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -127,14 +152,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('5pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="6pm">
                         {" "}
-                        <label>6 - </label>
-                        <select>
+                        <label htmlFor="6pm-hour-type">6 - </label>
+                        <select id="6pm-hour-type" {...register('6pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -143,14 +168,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('6pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="7pm">
                         {" "}
-                        <label>7 - </label>
-                        <select>
+                        <label htmlFor="7pm-hour-type">7 - </label>
+                        <select id="7pm-hour-type" {...register('7pm-hour-type')} className="hour-type">
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -159,14 +184,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('7pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="8pm">
                         {" "}
-                        <label>8 - </label>
-                        <select>
+                        <label htmlFor="8pm-hour-type">8 - </label>
+                        <select id="8pm-hour-type" {...register('8pm-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -175,14 +200,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('8pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="9pm">
                         {" "}
-                        <label>9 - </label>
-                        <select>
+                        <label htmlFor="9pm-hour-type">9 - </label>
+                        <select id="9pm-hour-type" {...register('9pm-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -191,14 +216,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('9pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="10pm">
                         {" "}
-                        <label>10 - </label>
-                        <select>
+                        <label htmlFor="10pm-hour-type">10 - </label>
+                        <select id="10pm-hour-type" {...register('10pm-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -207,14 +232,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('10pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="11pm">
                         {" "}
-                        <label>11 - </label>
-                        <select>
+                        <label htmlFor="11pm-hour-type">11 - </label>
+                        <select id="11pm-hour-type" {...register('11pm-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -223,14 +248,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('11pm-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="12am">
                         {" "}
-                        <label>12 - </label>
-                        <select>
+                        <label htmlFor="12am-hour-type">12 - </label>
+                        <select id="12am-hour-type" {...register('12am-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -239,14 +264,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('12am-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="1am">
                         {" "}
-                        <label>1 - </label>
-                        <select>
+                        <label htmlFor="1am-hour-type">1 - </label>
+                        <select id="1am-hour-type" {...register('1am-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -255,14 +280,14 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('1am-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
-                    <li>
+                    <li className="hour" id="2am">
                         {" "}
-                        <label>2 - </label>
-                        <select>
+                        <label htmlFor="2am-hour-type">2 - </label>
+                        <select id="2am-hour-type" {...register('2am-hour-type')} className="hour-type" >
                             <option value="Choreograph">Chor</option>
                             <option value="Structured">Struc</option>
                             <option value="Discressionary">Disc</option>
@@ -271,12 +296,12 @@ const EntryPage = () => {
                     </li>{" "}
                     <textarea
                         type="text"
-                        name="true"
+                        {...register('2am-notes')}
                         rows="2"
                         column="25"
                     ></textarea>
                 </ul>
-                <button>Submit</button>
+                <button type="submit" id="submitButton">Submit</button>
             </form>
         </div>
     );

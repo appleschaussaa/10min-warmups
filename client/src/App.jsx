@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import EntryPage from "./pages/EntryPage";
+import EntryPage from "./pages/EntryPage/EntryPage";
 
 function App() {
     const handleSubmit = (event) => {

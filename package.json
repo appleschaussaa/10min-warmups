@@ -4,8 +4,12 @@
   "description": "App to help write down daily plans",
   "main": "server.jsx",
   "scripts": {
+    "start": "node server/server.jsx --ignore client",
+    "dev": "concurrently \"cd server && npm run watch\" \"cd client && npm dev\"",
+    "install": "cd server && npm i && cd ../client && npm i",
+    "seed": "cd server && npm run seed",
+    "build": "cd client && npm run build",
     "test": "npm test"
-
   },
   "repository": {
     "type": "git",
@@ -16,5 +20,11 @@
   "bugs": {
     "url": "https://github.com/appleschaussaa/10min-warmups/issues"
   },
-  "homepage": "https://github.com/appleschaussaa/10min-warmups#readme"
+  "homepage": "https://github.com/appleschaussaa/10min-warmups#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "dependencies": {
+    "cors": "^2.8.5"
+  }
 }
